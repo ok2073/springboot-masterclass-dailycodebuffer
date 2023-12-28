@@ -3,6 +3,8 @@ package com.keelient.springboot.tutorial.controller;
 import com.keelient.springboot.tutorial.entity.Department;
 import com.keelient.springboot.tutorial.service.DepartmentService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,16 +15,20 @@ import java.util.Optional;
 @RestController()
 public class DepartmentController {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
+
     @Autowired
     private DepartmentService departmentService;
 
     @PostMapping
     public Department saveDepartment(@Valid @RequestBody Department department) {
+        LOGGER.info("Inside saveDepartment of DepartmentController");
         return departmentService.saveDepartment(department);
     }
 
     @GetMapping
     public List<Department> fetchDepartmentList() {
+        LOGGER.info("Inside fetchDepartmentList of DepartmentController");
         return departmentService.fetchDepartmentList();
     }
 
