@@ -1,6 +1,7 @@
 package com.keelient.springboot.tutorial.service;
 
 import com.keelient.springboot.tutorial.entity.Department;
+import com.keelient.springboot.tutorial.error.DepartmentNotFoundException;
 import com.keelient.springboot.tutorial.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,12 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public Optional<Department> fetchDepartmentById(Long departmentId) {
-        return departmentRepository.findById(departmentId);
+    public Optional<Department> fetchDepartmentById(Long departmentId) throws DepartmentNotFoundException {
+        Optional<Department>  department = departmentRepository.findById(departmentId);
+        if (!department.isPresent()) {
+            throw new DepartmentNotFoundException("Department not found");
+        }
+        return department;
     }
 
     @Override

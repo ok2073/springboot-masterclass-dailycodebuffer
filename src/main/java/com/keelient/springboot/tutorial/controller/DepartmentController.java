@@ -1,6 +1,7 @@
 package com.keelient.springboot.tutorial.controller;
 
 import com.keelient.springboot.tutorial.entity.Department;
+import com.keelient.springboot.tutorial.error.DepartmentNotFoundException;
 import com.keelient.springboot.tutorial.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Department> fetchDepartmentById(@PathVariable("id") Long departmentId) {
+    public Optional<Department> fetchDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
         return departmentService.fetchDepartmentById(departmentId);
     }
 
