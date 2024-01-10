@@ -1,0 +1,60 @@
+server:
+    port: 8082
+
+spring:
+    profiles:
+        active: dev
+    output:
+        ansi:
+            enabled: ALWAYS
+
+---
+welcome:
+    message: Welcome to Daily Code Buffer!
+---
+
+spring:
+    config:
+        activate:
+            on-profile: dev
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: root
+        url: jdbc:mysql://localhost:3333/dcbapp
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+
+---
+
+spring:
+    config:
+        activate:
+            on-profile: qa
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: root
+        url: jdbc:mysql://localhost:3333/dcbapp-qa
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+
+---
+
+spring:
+    config:
+        activate:
+            on-profile: prod
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: root
+        url: jdbc:mysql://localhost:3333/dcbapp-prod
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
