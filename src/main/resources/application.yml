@@ -35,6 +35,7 @@ management:
             base-path: /actuator
             exposure:
                 include: "*"
+                exclude: "caches, health"
     info:
         env:
             enabled: true
